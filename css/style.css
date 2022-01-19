@@ -7,6 +7,7 @@
   --footer-text-color: rgba(255, 255, 255, 0.6);
   --hero-bg-color: #2f303a;
   --header-border-color: #ececec;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Утилиты */
@@ -83,6 +84,8 @@ body {
   font-weight: 700;
   font-size: 26px;
   line-height: 1.19;
+
+  transition: color 250ms var(--cubic);
 }
 
 .logo-web {
@@ -117,6 +120,8 @@ body {
 
   font-weight: 500;
   letter-spacing: 0.02em;
+
+  transition: color 250ms var(--cubic);
 }
 
 .site-nav .link:hover,
@@ -126,6 +131,22 @@ body {
 
 .site-nav .link.current {
   color: var(--accent-color);
+}
+
+/* полоса под Студия */
+
+.site-nav .item {
+  position: relative;
+}
+.site-nav .current::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: '';
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 /* контакты в шапке */
@@ -149,6 +170,8 @@ body {
   color: var(--secondary-text-color);
   font-weight: 500;
   letter-spacing: 0.02em;
+
+  transition: color 250ms var(--cubic);
 }
 
 .contact-nav .link:hover,
@@ -271,6 +294,25 @@ body {
   margin-right: 30px;
 }
 
+.service .item {
+  position: relative;
+}
+
+.service-text {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  padding-top: 27px;
+  padding-bottom: 27px;
+
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--primary-white-color);
+  background-color: rgba(47, 48, 58, 0.8);
+}
+
 .service-title,
 .team-title,
 .clients-title {
@@ -343,6 +385,8 @@ body {
   height: 44px;
   border-radius: 50%;
   color: #afb1b8;
+
+  transition: color 250ms var(--cubic), background-color 250ms var(--cubic);
 }
 
 .team-social-networks-link:hover,
@@ -409,6 +453,12 @@ body {
 
 .footer-logo {
   color: var(--primary-white-color);
+  transition: color 250ms var(--cubic);
+}
+
+.footer-logo:hover,
+.footer-logo:focus {
+  color: var(--accent-color);
 }
 
 .address {
@@ -424,6 +474,8 @@ body {
 .address .link {
   color: var(--primary-white-color);
   line-height: 1.71;
+
+  transition: color 250ms var(--cubic);
 }
 
 .link.mail,
@@ -462,6 +514,8 @@ body {
   height: 44px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
+
+  transition: background-color 250ms var(--cubic);
 }
 
 .invitation-link:hover,
@@ -502,6 +556,9 @@ body {
   letter-spacing: 0.03em;
   cursor: pointer;
   border-style: none;
+
+  transition: color 250ms var(--cubic), background-color 250ms var(--cubic),
+    box-shadow 250ms var(--cubic);
 }
 
 .portfolio-btn:hover,
@@ -522,6 +579,7 @@ body {
 
 .examples .item {
   width: calc((100% - 60px) / 3);
+  transition: box-shadow 250ms var(--cubic);
 }
 
 .examples .item:not(:nth-child(3n)) {
@@ -556,4 +614,90 @@ body {
 .examples .item:hover {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+/* Технокряк */
+
+.examples-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.examples-thumb-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 63px 24px;
+
+  font-size: 18px;
+  line-height: 1.56;
+  background-color: rgba(33, 150, 243, 0.9);
+  color: var(--primary-white-color);
+
+  transform: translateY(100%);
+  transition: transform 250ms var(--cubic);
+}
+
+.examples .item:hover .examples-thumb-text {
+  transform: translateY(0);
+}
+
+/* Модалка */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms var(--cubic), visibility 250ms var(--cubic);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms var(--cubic);
+
+  width: 528px;
+  height: 581px;
+  border-radius: 4px;
+
+  background-color: var(--primary-white-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
 }
